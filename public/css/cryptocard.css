@@ -1,0 +1,18 @@
+.card {
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+.card .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.card .rank {
+    font-size: 1.2rem;
+}
+.positive {
+    color: green;
+}
+.negative {
+    color: red;
+}
