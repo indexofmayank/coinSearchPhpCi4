@@ -2,10 +2,17 @@
 
 namespace App\Controllers;
 
+use App\Models\Users as UserModel;
+
 class AuthController extends BaseController 
 {
     public function signup() {
         return view('pages/singup');
+    }
+
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
     }
 
     public function processSignup()
@@ -17,10 +24,15 @@ class AuthController extends BaseController
             
             // Define validation rules
             $rules = [
-                'name' => 'required|min_length[3]|max_length[50]',
+                'name' => 'required|min_length[4]|max_length[15]',
                 'email' => 'required|valid_email|min_length[3]|max_length[50]',
-                'password' => 'required|min_length[3]|max_length[50]',
-            ];
+                'password' => [
+                'rules' => 'required|min_length[8]|max_length[15]|regex_match[/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).+$/]',
+                'errors' => [
+                    'regex_match' => 'Password must be 8 to 15 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.'
+                ]
+            ]            
+        ];
 
             // Set the validation rules
             if (!$this->validate($rules)) {
@@ -41,6 +53,13 @@ class AuthController extends BaseController
             var_dump($password);
 
             // Continue processing, such as saving user data to the database
+            $data=[
+                'name' => $name,
+                'email' => $email,
+                'password' => $password
+            ];
+            $result = $this->userModel->createUser($data);
+            return redirect()->to('homepage');
         }
     }
 
