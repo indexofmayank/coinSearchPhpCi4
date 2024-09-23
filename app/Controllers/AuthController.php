@@ -59,6 +59,7 @@ class AuthController extends BaseController
                 'password' => $password
             ];
             $result = $this->userModel->createUser($data);
+            session()->set('user_name', $name);
             return redirect()->to('homepage');
         }
     }
@@ -66,27 +67,45 @@ class AuthController extends BaseController
     public function processLogin()
     {
         helper(['form']);
-        if($this->request->getMethod() === 'post') {
+    
+        if ($this->request->getMethod() === 'post') {
             $email = $this->request->getPost('email');
-            $password = $this->request->getPost('password');
-
-            // Define validation rules
-            $rules = [
-                'email' => 'required|valid_email|min_length[3]|max_length[50]',
-                'password' => 'required|min_length[3]|max_length[50]',
-            ];
-
-             // Set the validation rules
-             if (!$this->validate($rules)) {
-                // Validation failed, return the form with validation errors
+            $password = $this->request->getPost('password');    
+    
+            // Load the Users model
+            $userModel = new \App\Models\Users();
+    
+           // Attempt to find the user by email
+            $user = $userModel->where('email', $email)->first();
+            var_dump($user);
+    
+        //     // Check if user exists and password matches
+            if ($user && $password === $user['password']) {
+                // Password is correct; set session data
+                
+    
+        //         // Redirect to the dashboard
+                session()->set('user_name', $user['name']);
+                return redirect()->to('homepage'); // Adjust to your dashboard route
+            } else {
+                // User not found or password is incorrect
                 return view('pages/login', [
-                    'validation' => $this->validator
+                    'validation' => \Config\Services::validation() // Correctly instantiate the validation service
                 ]);
             }
-
-            var_dump($email);
-            var_dump($password);
         }
-
+    
+        // If not a post request, just display the login form
+        return view('pages/login');
     }
-}
+
+    public function logout() {
+        // Access the session service
+        $session = \Config\Services::session();
+    
+        // Destroy the session
+        $session->destroy();
+    
+        // Redirect to the login page
+        return redirect()->to('/login'); // Update the path as needed
+    }}

@@ -48,4 +48,5 @@ class Users extends Model
         $result = $this->insert($data);
         return $result;
     }
+
 }

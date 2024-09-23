@@ -15,3 +15,4 @@ $routes->get('/cryptopage', 'Home::crypto');
 $routes->get('/signup', 'AuthController::signup');
 $routes->post('/signup', 'AuthController::processSignup');
 $routes->post('/login', 'AuthController::processLogin');
+$routes->get('/logout', 'AuthController::logout');

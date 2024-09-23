@@ -14,8 +14,8 @@
             </div>
             <!-- User Info and Logout -->
             <div class="user-info">
-                <span class="username">User Name</span>
-                <a href="#" class="logout">Logout</a>
+                <span class="username"><?= session()->get('user_name') ?></span>
+                <a href=<?=base_url('/logout') ?> class="logout">Logout</a>
             </div>
         </div>
 
