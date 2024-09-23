@@ -19,15 +19,25 @@
             </div>
         </div>
 
-        <!-- Search Section -->
-        <div class="search-box">
+       <!-- Search Section -->
+       <div class="search-box">
             <h3>Search</h3>
             <form class="d-flex">
-                <input type="text" class="form-control" placeholder="Enter coin symbols">
-                <button type="submit" class="btn btn-search">Search</button>
+                <!-- Conditionally change placeholder based on user_name session -->
+                <input type="text" class="form-control" 
+                    placeholder="<?= session()->has('user_name') ? 'Search by user coins' : 'BTC ADA BNB' ?>">
+                
+                <!-- Conditionally display search button only if user_name is set -->
+                <?php if (session()->has('user_name')): ?>
+                    <button type="submit" class="btn btn-search">Search</button>
+                <?php endif; ?>
             </form>
         </div>
     </div>
+
+
+
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

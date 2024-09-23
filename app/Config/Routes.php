@@ -16,3 +16,5 @@ $routes->get('/signup', 'AuthController::signup');
 $routes->post('/signup', 'AuthController::processSignup');
 $routes->post('/login', 'AuthController::processLogin');
 $routes->get('/logout', 'AuthController::logout');
+
+$routes->get('/quotes', 'CoinMarketCapController::quotes');

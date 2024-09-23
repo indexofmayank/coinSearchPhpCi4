@@ -77,20 +77,19 @@ class AuthController extends BaseController
     
            // Attempt to find the user by email
             $user = $userModel->where('email', $email)->first();
-            var_dump($user);
     
-        //     // Check if user exists and password matches
+          // Check if user exists and password matches
             if ($user && $password === $user['password']) {
                 // Password is correct; set session data
-                
-    
-        //         // Redirect to the dashboard
                 session()->set('user_name', $user['name']);
-                return redirect()->to('homepage'); // Adjust to your dashboard route
+                return redirect()->to('homepage'); 
             } else {
                 // User not found or password is incorrect
+                $validation = \Config\Services::validation();
+                $validation->setError('login', 'Email or password is incorrect.');
+    
                 return view('pages/login', [
-                    'validation' => \Config\Services::validation() // Correctly instantiate the validation service
+                    'validation' => $validation
                 ]);
             }
         }
@@ -107,5 +106,5 @@ class AuthController extends BaseController
         $session->destroy();
     
         // Redirect to the login page
-        return redirect()->to('/login'); // Update the path as needed
+        return redirect()->to('/login'); 
     }}
