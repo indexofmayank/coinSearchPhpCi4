@@ -43,4 +43,31 @@ class AuthController extends BaseController
             // Continue processing, such as saving user data to the database
         }
     }
+
+    public function processLogin()
+    {
+        helper(['form']);
+        if($this->request->getMethod() === 'post') {
+            $email = $this->request->getPost('email');
+            $password = $this->request->getPost('password');
+
+            // Define validation rules
+            $rules = [
+                'email' => 'required|valid_email|min_length[3]|max_length[50]',
+                'password' => 'required|min_length[3]|max_length[50]',
+            ];
+
+             // Set the validation rules
+             if (!$this->validate($rules)) {
+                // Validation failed, return the form with validation errors
+                return view('pages/login', [
+                    'validation' => $this->validator
+                ]);
+            }
+
+            var_dump($email);
+            var_dump($password);
+        }
+
+    }
 }
