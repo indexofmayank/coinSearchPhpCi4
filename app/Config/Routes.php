@@ -10,6 +10,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/login', 'Home::login');
 $routes->get('/homepage', 'Home::homepage');
 $routes->get('/cryptopage', 'Home::crypto');
+$routes->post('/search', 'Home::search');
 
 
 $routes->get('/signup', 'AuthController::signup');
@@ -18,3 +19,4 @@ $routes->post('/login', 'AuthController::processLogin');
 $routes->get('/logout', 'AuthController::logout');
 
 $routes->get('/quotes', 'CoinMarketCapController::quotes');
+$routes->get('/check', 'CoinMarketCapController::index');

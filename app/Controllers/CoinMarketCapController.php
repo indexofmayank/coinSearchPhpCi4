@@ -2,15 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Models\CoinMarketCapModel;
+use App\Models\CoinMarketCapModel as CoinModel;
 
 class CoinMarketCapController extends BaseController
 {
-    public function quotes()
+
+    public function __construct()
     {
-        $model = new CoinMarketCapModel();
-        $symbols = 'BTC,ETH,LTC'; // Specify the symbols you want to fetch
-        $data = $model->getLatestQuotes($symbols);
+        $this->coinmarketcapmodel = new CoinModel();
+    }
+
+
+    public function quotes($symbol)
+    {
+        // $model = new CoinModel();
+        $data = $this->coinmarketcapmodel->getLatestQuotes($symbol);
 
         return var_dump($data);
     }

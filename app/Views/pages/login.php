@@ -27,6 +27,7 @@
                     <input type="password" class="form-control <?= isset($validation) && $validation->hasError('password') ? 'is-invalid' : ''?>" id="password" placeholder="Enter your password" name="password" value="<?=set_value('password') ?>">
                 </div>
                 <button type="submit" class="btn btn-primary">login</button>
+                <p>Don't have an account, click on <a href='<?=base_url('/signup') ?>'>Click here</a></p>
             </form>
         </div>
     </div>

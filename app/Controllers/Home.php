@@ -2,8 +2,16 @@
 
 namespace App\Controllers;
 
+use App\Models\CoinMarketCapModel as CoinModel;
+
 class Home extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->coinmarketcapmodel = new CoinModel();
+    }
+
     public function index(): string
     {
         return view('home');
@@ -53,6 +61,16 @@ class Home extends BaseController
             ];
     
             return view('components/crypto_cards', $data);
+        }
+    }
+
+    public function search() {
+        helper(['form']);
+
+        if($this->request->getMethod() === 'post') {
+            $search_term = $this->request->getPost('search_term');
+            $result = $this->coinmarketcapmodel->getLatestQuotes($search_term);
+            return var_dump($result);
         }
     }
 }

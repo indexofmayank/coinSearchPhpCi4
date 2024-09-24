@@ -68,6 +68,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Sign Up</button>
+            <p>Already have an account, <a href='<?= base_url('login') ?>'>click here</a></p>
         </form>
     </div>
 </div>

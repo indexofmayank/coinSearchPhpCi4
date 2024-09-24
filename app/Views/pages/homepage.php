@@ -1,8 +1,7 @@
 <?= $this->extend('layout/main') ?>
 <?= $this->section('content') ?>
-
 <link rel="stylesheet" href="<?= base_url('css/homepage.css') ?>">
-
+<?php helper('form'); ?>
 
 <body>
     <div class="container-fluid">
@@ -22,9 +21,10 @@
        <!-- Search Section -->
        <div class="search-box">
             <h3>Search</h3>
-            <form class="d-flex">
+            <form class="d-flex" action='<?= base_url('/search') ?>' method="post">
+                <?= csrf_field() ?>
                 <!-- Conditionally change placeholder based on user_name session -->
-                <input type="text" class="form-control" 
+                <input type="text" class="form-control" name='search_term'
                     placeholder="<?= session()->has('user_name') ? 'Search by user coins' : 'BTC ADA BNB' ?>">
                 
                 <!-- Conditionally display search button only if user_name is set -->

@@ -6,14 +6,15 @@ use App\Models\Users as UserModel;
 
 class AuthController extends BaseController 
 {
-    public function signup() {
-        return view('pages/singup');
-    }
-
     public function __construct()
     {
         $this->userModel = new UserModel();
     }
+    
+    public function signup() {
+        return view('pages/singup');
+    }
+
 
     public function processSignup()
     {
