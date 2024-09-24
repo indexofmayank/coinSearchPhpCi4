@@ -1,51 +1,94 @@
+/* Default Light Theme */
 body, html {
     height: 100%;
     margin: 0;
-    background-color: #f8f9fa;
+    background-color: var(--bg-color);
 }
+
 .container-fluid {
     height: 100%;
 }
+
 .logo img {
     width: 150px;
 }
+
 .search-box {
     max-width: 500px;
     margin: 0 auto;
     padding-top: 150px;
     text-align: center;
 }
+
 .search-box input {
     width: 100%;
     padding: 10px;
     margin-right: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border-color);
     border-radius: 5px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
 }
+
 .search-box .btn-search {
-    background-color: black;
-    border-color: black;
+    background-color: var(--btn-bg);
+    border-color: var(--btn-border-color);
     padding: 10px 20px;
+    color: var(--btn-color);
 }
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: #fff;
-    border-bottom: 1px solid #e0e0e0;
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
 }
+
 .header .user-info {
     display: flex;
     align-items: center;
 }
+
 .header .user-info .username {
     margin-right: 10px;
+    color: var(--text-color);
 }
+
 .logout {
-    color: black;
+    color: var(--logout-color);
     text-decoration: none;
 }
+
 .logout:hover {
     text-decoration: underline;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-bg: #333333;
+    --border-color: #555555;
+    --btn-bg: #0d6efd;
+    --btn-border-color: #0a58ca;
+    --btn-color: #ffffff;
+    --input-bg-color: #222222;
+    --input-border-color: #444444;
+    --logout-color: #ffffff;
+}
+
+/* Light Theme */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #000000;
+    --header-bg: #ffffff;
+    --border-color: #e0e0e0;
+    --btn-bg: black;
+    --btn-border-color: black;
+    --btn-color: #ffffff;
+    --input-bg-color: #ffffff;
+    --input-border-color: #ccc;
+    --logout-color: black;
 }
