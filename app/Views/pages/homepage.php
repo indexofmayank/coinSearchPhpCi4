@@ -9,7 +9,7 @@
         <div class="header">
             <!-- Logo -->
             <div class="logo">
-                <img src="https://via.placeholder.com/150x50?text=CashRich" alt="CashRich Logo">
+                <a href='<?=base_url('homepage') ?>'><img src="https://via.placeholder.com/150x50?text=CashRich" alt="CashRich Logo"></a>
             </div>
             <!-- User Info and Logout -->
             <div class="user-info">
